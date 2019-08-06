@@ -1,0 +1,14 @@
+{% extends 'record/base.html' %}
+{% block title %}主页{% endblock %}
+{% block content %}
+{#    {% if request.session.is_login %}#}
+{#        <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1>#}
+{##}
+{#    {% else %}#}
+        <div class="container">
+            <h1 class="text-center">请选择身份</h1><br>
+            <a href="/user/" class="btn btn-default btn-lg btn-block active" role="button">学生</a>
+            <a href="/visitor/" class="btn btn-default btn-lg btn-block active" role="button">外来人员</a>
+        </div>
+{#    {% endif %}#}
+{% endblock %}

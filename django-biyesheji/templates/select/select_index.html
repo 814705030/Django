@@ -1,0 +1,14 @@
+{% extends 'select/base.html' %}
+{% block title %}主页{% endblock %}
+{% block content %}
+    {#    {% if request.session.is_login %}#}
+    {#        <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1>#}
+    {##}
+    {#    {% else %}#}
+    <div class="container">
+        <h1 class="text-center">欢迎使用，请选择功能</h1><br>
+        <a href="/index/" class="btn btn-default btn-lg btn-block active" role="button">进出登记</a>
+        <a href="/login/" class="btn btn-default btn-lg btn-block active" role="button">用户管理</a>
+    </div>
+    {#    {% endif %}#}
+{% endblock %}

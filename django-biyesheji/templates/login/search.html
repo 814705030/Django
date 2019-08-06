@@ -1,0 +1,70 @@
+{% extends 'login/base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{#{% block css %}#}
+{#    <link rel="stylesheet" href="{% static 'css/login.css' %}">#}
+{#{% endblock %}#}
+{#<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">#}
+{% block content %}
+    <div class="form-group">
+        <h4>请选择想要查询的日期范围</h4>
+        <input id="date_from" type="date">
+        <a>到</a>
+        <input id="date_to" type="date">
+        <span>
+            <a onclick="getkey(this)"   style="text-decoration: none;">确定</a>
+        </span>
+    </div>
+    <script type="text/javascript">
+        function getkey(a) {
+            var date_from = document.getElementById("date_from").value;
+            var date_to = document.getElementById("date_to").value;
+            a.href = '?date_from=' + date_from + '&&date_to=' + date_to
+        }
+    </script>
+    <table class="table table-bordered table-hover" style="width: 1000px;margin: 0 auto">
+        <thead>
+        <tr>
+            <th style="width: 200px">学号</th>
+            <th style="width: 200px">时间</th>
+            <th style="width: 200px">进出</th>
+            <th>备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for stu_info in stu %}
+            <tr>
+                <td>{{ stu_info.stu_no }}</td>
+                <td>{{ stu_info.time }}</td>
+                <td>{{ stu_info.in_out }}</td>
+                <td>{{ stu_info.remark }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation" style="position: fixed;left:50%;transform: translateX(-50%); bottom: 20px;">
+        <ul class="pagination">
+            {% if stu.has_previous %}
+                <li>
+                    <a href="?page={{ stu.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for pg in stu.paginator.page_range %}
+                {% if stu.number == pg %}
+                    <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if stu.has_next %}
+                <li>
+                    <a href="?page={{ stu.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

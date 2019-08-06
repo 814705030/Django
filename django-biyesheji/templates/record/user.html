@@ -1,0 +1,33 @@
+{% extends 'record/base.html' %}
+{% load staticfiles %}
+{% block title %}学生{% endblock %}
+{#{% block css %}#}
+{#    <link rel="stylesheet" href="{% static 'css/login.css' %}">#}
+{#{% endblock %}#}
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <form class='form-login' method="post">
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+                {% csrf_token %}
+                <h2 class="text-center">欢迎使用</h2>
+                <div class="form-group">
+                    {{ record_form.stu_no.label_tag }}
+                    {{ record_form.stu_no }}
+                </div>
+                <div class="form-group">
+                    {{ record_form.in_out.label_tag }}
+                    {{ record_form.in_out }}
+                </div>
+                <div class="form-group">
+                    {{ record_form.remark.label_tag }}
+                    {{ record_form.remark }}
+                </div>
+                <button type="reset" class="btn btn-default pull-left">重置</button>
+                <button type="submit" class="btn btn-primary pull-right">提交</button>
+            </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}
